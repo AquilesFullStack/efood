@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { cores } from "../../styles";
+import styled from 'styled-components'
+import { cores } from '../../styles'
 
 export const Card = styled.div`
   max-width: 472px;
@@ -9,13 +9,13 @@ export const Card = styled.div`
     width: 472px;
     height: 217px;
   }
-`;
+`
 
 export const Titulo = styled.h3`
   font-size: 18px;
   display: flex;
   padding-top: 8px;
-`;
+`
 
 export const Descricao = styled.p`
   font-size: 14px;
@@ -23,7 +23,7 @@ export const Descricao = styled.p`
   display: block;
   margin-top: 16px;
   padding-bottom: 16px;
-`;
+`
 
 export const Nota = styled.div`
   display: flex;
@@ -35,7 +35,7 @@ export const Nota = styled.div`
   p {
     padding-top: 8px;
   }
-`;
+`
 
 export const Botao = styled.button`
   background-color: ${cores.laranja};
@@ -43,18 +43,33 @@ export const Botao = styled.button`
   padding: 4px 6px;
   font-size: 14px;
   color: ${cores.amarelo};
-`;
+`
 
 export const Tnota = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-`;
+`
 
 export const Cards = styled.div`
   display: block;
   margin: -8px 0px;
   padding: 8px;
   border: 1px solid ${cores.laranja};
-`;
+`
+
+export const Tag = styled.div`
+  background-color: ${cores.laranja};
+  color: ${cores.branco};
+  font-size: 12px;
+  font-weight: bold;
+  padding: 6px 10px;
+  margin-right: 8px;
+`
+export const Tags = styled.div`
+  display: flex;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+`

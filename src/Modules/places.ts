@@ -1,10 +1,12 @@
 class Places {
-  image: string;
-  title: string;
-  nota: string;
-  description: string;
-  id: number;
-  to?: string;
+  image: string
+  title: string
+  nota: string
+  description: string
+  id: number
+  destaque: string[]
+  tipo: string[]
+  to?: string
 
   constructor(
     id: number,
@@ -12,15 +14,19 @@ class Places {
     title: string,
     nota: string,
     description: string,
-    to?: string,
+    destaque: string[],
+    tipo: string[],
+    to?: string
   ) {
-    this.id = id;
-    this.description = description;
-    this.image = image;
-    this.title = title;
-    this.nota = nota;
-    this.to = to;
+    this.id = id
+    this.description = description
+    this.image = image
+    this.title = title
+    this.nota = nota
+    this.tipo = tipo
+    this.destaque = destaque
+    this.to = to
   }
 }
 
-export default Places;
+export default Places

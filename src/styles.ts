@@ -1,10 +1,10 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 export const cores = {
-  branco: "#eee",
-  laranja: "#E66767",
-  amarelo: "#FFEBD9",
-};
+  branco: '#eee',
+  laranja: '#E66767',
+  amarelo: '#FFEBD9'
+}
 
 export const GlobalCss = createGlobalStyle`
   *{
@@ -25,4 +25,8 @@ export const GlobalCss = createGlobalStyle`
     width: 100%;
     margin: 0 auto;  
   }
-`;
+
+  div:empty{
+    display:none;
+  }
+`

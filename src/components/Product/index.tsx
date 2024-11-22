@@ -1,15 +1,35 @@
-import { Card, Titulo, Descricao, Nota, Tnota, Botao, Cards } from "./styles";
-import estrela from "../../assets/estrela.png";
-import Button from "../Button";
+import {
+  Card,
+  Titulo,
+  Descricao,
+  Nota,
+  Tnota,
+  Tag,
+  Cards,
+  Tags
+} from './styles'
+import estrela from '../../assets/estrela.png'
+import Button from '../Button'
 
 type Props = {
-  imagem: string;
-  title: string;
-  nota: string;
-  description: string;
-};
+  imagem: string
+  title: string
+  nota: string
+  description: string
+  destaque: string[]
+  tipo: string[]
+  to?: string
+}
 
-const Restaurant = ({ title, imagem, nota, description }: Props) => (
+const Restaurant = ({
+  title,
+  imagem,
+  nota,
+  description,
+  destaque,
+  tipo,
+  to
+}: Props) => (
   <Card>
     <img className="foto" src={imagem} alt="title" />
     <Cards>
@@ -21,11 +41,15 @@ const Restaurant = ({ title, imagem, nota, description }: Props) => (
         </Nota>
       </Tnota>
       <Descricao>{description}</Descricao>
-      <Button type="link" title={title} to="/">
+      <Tags>
+        <Tag>{destaque}</Tag>
+        <Tag>{tipo}</Tag>
+      </Tags>
+      <Button type="link" title={title} to={to}>
         Saiba Mais
       </Button>
     </Cards>
   </Card>
-);
+)
 
-export default Restaurant;
+export default Restaurant

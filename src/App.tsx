@@ -1,6 +1,6 @@
-import { BrowserRouter } from "react-router-dom";
-import Rotas from "./routes";
-import { GlobalCss } from "./styles";
+import { BrowserRouter } from 'react-router-dom'
+import Rotas from './routes'
+import { GlobalCss } from './styles'
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <GlobalCss />
       <Rotas />
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

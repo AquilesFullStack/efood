@@ -1,9 +1,9 @@
-import rodape from "../../assets/footer.png";
-import logo from "../../assets/logo.png";
-import { Rede, Rodape, Desc } from "./styles";
-import instagram from "../../assets/instagram.png";
-import face from "../../assets/face.png";
-import tt from "../../assets/twitter.png";
+import rodape from '../../assets/footer.png'
+import logo from '../../assets/logo.png'
+import { Rede, Rodape, Desc } from './styles'
+import instagram from '../../assets/instagram.png'
+import face from '../../assets/face.png'
+import tt from '../../assets/twitter.png'
 
 const Footer = () => (
   <Rodape style={{ backgroundImage: `url(${rodape})` }}>
@@ -21,6 +21,6 @@ const Footer = () => (
       estabelecimento contratado.
     </Desc>
   </Rodape>
-);
+)
 
-export default Footer;
+export default Footer

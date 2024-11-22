@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { cores } from "../../styles";
+import styled from 'styled-components'
+import { cores } from '../../styles'
 
 export const Rodape = styled.footer`
   width: 100%;
@@ -10,7 +10,8 @@ export const Rodape = styled.footer`
   align-items: center;
   padding: 40px 0px;
   color: ${cores.laranja};
-`;
+  margin-top: 120px;
+`
 
 export const Rede = styled.div`
   width: 88px;
@@ -18,7 +19,7 @@ export const Rede = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin: 0 auto;
-`;
+`
 
 export const Desc = styled.p`
   max-width: 480px;
@@ -29,4 +30,4 @@ export const Desc = styled.p`
   font-size: 10px;
   line-height: 22px;
   text-align: center;
-`;
+`

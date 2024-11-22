@@ -1,7 +1,7 @@
-import { Imagem, Titulo } from "./styles";
+import { Imagem, Titulo } from './styles'
 
-import headerImg from "../../assets/Vector.png";
-import logo from "../../assets/logo.png";
+import headerImg from '../../assets/Vector.png'
+import logo from '../../assets/logo.png'
 
 const Header = () => (
   <Imagem style={{ backgroundImage: `url(${headerImg})` }}>
@@ -12,6 +12,6 @@ const Header = () => (
       no conforto da sua casa
     </Titulo>
   </Imagem>
-);
+)
 
-export default Header;
+export default Header
