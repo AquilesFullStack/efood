@@ -31,21 +31,21 @@ const Restaurant = ({
   to
 }: Props) => (
   <Card>
-    <img className="foto" src={imagem} alt="title" />
+    <img className="foto" src={imagem} alt={title} />
     <Cards>
       <Tnota>
         <Titulo>{title}</Titulo>
         <Nota>
           <p>{nota}</p>
-          <img src={estrela} alt="fav icon" />
+          <img src={estrela} alt="Ícone de avaliação" />
         </Nota>
       </Tnota>
       <Descricao>{description}</Descricao>
       <Tags>
-        <Tag>{destaque}</Tag>
+        {destaque.length > 0 && <Tag>{destaque}</Tag>}
         <Tag>{tipo}</Tag>
       </Tags>
-      <Button type="link" title={title} to={to}>
+      <Button type="link" title={`Ver ${title}`} to={to}>
         Saiba Mais
       </Button>
     </Cards>

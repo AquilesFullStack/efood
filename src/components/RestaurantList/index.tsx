@@ -20,6 +20,7 @@ const RestaurantList = ({ place }: Props) => (
           description={place.description}
           destaque={place.destaque}
           tipo={place.tipo}
+          to={place.to}
         />
       ))}
     </List>

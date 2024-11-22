@@ -20,7 +20,7 @@ const restaurantes: Places[] = [
       'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem sair do lar com nosso delivery!',
     destaque: ['Destaque da semana'],
     tipo: ['Japonesa'],
-    to: '/'
+    to: '/japonesa'
   },
   {
     id: 2,
@@ -29,9 +29,9 @@ const restaurantes: Places[] = [
     nota: '4,6',
     description:
       'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    destaque: [''],
+    destaque: [],
     tipo: ['Italiana'],
-    to: '/'
+    to: '/japonesa'
   },
   {
     id: 3,
@@ -40,9 +40,9 @@ const restaurantes: Places[] = [
     nota: '4,8',
     description:
       'A Casa das Delícias Árabes é um acolhedor e autêntico restaurante árabe, localizado no coração da cidade, que proporciona uma verdadeira experiência culinária do Oriente Médio. O ambiente é decorado com elementos tradicionais e exóticos, criando uma atmosfera convidativa e confortável.',
-    destaque: [''],
+    destaque: [],
     tipo: ['árabe'],
-    to: '/'
+    to: '/japonesa'
   },
   {
     id: 4,
@@ -51,9 +51,9 @@ const restaurantes: Places[] = [
     nota: '4,8',
     description:
       'O Cantinho Lusitano é um charmoso e tradicional restaurante português, que celebra a rica herança culinária de Portugal. Neste aconchegante espaço, os visitantes podem desfrutar dos autênticos sabores portugueses, preparados com ingredientes frescos e de alta qualidade, respeitando as receitas clássicas.',
-    destaque: [''],
+    destaque: [],
     tipo: ['português'],
-    to: '/'
+    to: '/japonesa'
   },
   {
     id: 5,
@@ -62,9 +62,9 @@ const restaurantes: Places[] = [
     nota: '4,7',
     description:
       'A Piazza del Forno é uma pizzaria acolhedora e autêntica que se orgulha de suas raízes italianas. Aqui, você encontrará pizzas artesanais preparadas com ingredientes frescos e assadas em forno a lenha, proporcionando sabores inigualáveis e uma crosta crocante e deliciosa.',
-    destaque: [''],
+    destaque: [],
     tipo: ['pizzaria'],
-    to: '/'
+    to: '/japonesa'
   },
   {
     id: 6,
@@ -73,9 +73,9 @@ const restaurantes: Places[] = [
     nota: '4,8',
     description:
       'O Jardim da Terra é um restaurante vegano que se dedica a oferecer pratos deliciosos e criativos, utilizando apenas ingredientes frescos, orgânicos e sazonais. Nosso cardápio é cuidadosamente elaborado para proporcionar uma experiência culinária única.',
-    destaque: [''],
+    destaque: [],
     tipo: ['vegano'],
-    to: '/'
+    to: '/japonesa'
   }
 ]
 
