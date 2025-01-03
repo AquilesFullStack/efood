@@ -1,11 +1,9 @@
-import Places from '../../Modules/places'
-import { Imagem } from '../Header/styles'
-import Restaurant from '../Product'
-
+import { Place } from '../../pages/Home'
+import Restaurant from '../Restaurantes'
 import { List } from './styles'
 
 export type Props = {
-  place: Places[]
+  place: Place[]
 }
 
 const RestaurantList = ({ place }: Props) => (
@@ -14,6 +12,7 @@ const RestaurantList = ({ place }: Props) => (
       {place.map((place) => (
         <li key={place.id}>
           <Restaurant
+            id={place.id}
             capa={place.capa}
             titulo={place.titulo}
             avaliacao={place.avaliacao}

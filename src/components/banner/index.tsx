@@ -1,24 +1,24 @@
+import { useEffect, useState } from 'react'
 import { Imagem, Culinaria, Nome } from './styles'
+import { Place } from '../../pages/Home'
 
-interface BannerProps {
-  imageUrl: string
-  culinaria: string
-  nome: string
+const Banner = () => {
+  const [menu, setMenu] = useState<Place>()
+
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes`)
+      .then((res) => res.json())
+      .then((res) => setMenu(res))
+  }, [])
+
+  return (
+    <Imagem style={{ backgroundImage: `url(${menu?.cardapio.foto})` }}>
+      <div className="container">
+        <Culinaria>{menu?.cardapio.nome}</Culinaria>
+        <Nome>{menu?.cardapio.nome}</Nome>
+      </div>
+    </Imagem>
+  )
 }
-
-const Banner: React.FC<BannerProps> = ({ imageUrl, culinaria, nome }) => (
-  <Imagem
-    style={{
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${imageUrl})`
-    }}
-  >
-    <div className="container">
-      <Culinaria>{culinaria}</Culinaria>
-    </div>
-    <div className="container">
-      <Nome>{nome}</Nome>
-    </div>
-  </Imagem>
-)
 
 export default Banner

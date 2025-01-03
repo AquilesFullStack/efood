@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 import { cores } from '../../styles'
 import { Link } from 'react-router-dom'
+import { Props } from '.'
 
-export const ButtonContainer = styled.button`
+export const ButtonContainer = styled.button<Props>`
   background-color: ${cores.laranja};
   border: none;
   padding: 4px 6px;
