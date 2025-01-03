@@ -1,31 +1,28 @@
 class Places {
-  image: string
-  title: string
-  nota: string
-  description: string
+  capa: string
+  titulo: string
+  avaliacao: number
+  descricao: string
   id: number
-  destaque: string[]
-  tipo: string[]
-  to?: string
+  destacado: Boolean
+  tipo: string
 
   constructor(
     id: number,
-    image: string,
-    title: string,
-    nota: string,
-    description: string,
-    destaque: string[],
-    tipo: string[],
-    to?: string
+    capa: string,
+    titulo: string,
+    avaliacao: number,
+    descricao: string,
+    destacado: Boolean,
+    tipo: string
   ) {
     this.id = id
-    this.description = description
-    this.image = image
-    this.title = title
-    this.nota = nota
+    this.descricao = descricao
+    this.capa = capa
+    this.titulo = titulo
+    this.avaliacao = avaliacao
     this.tipo = tipo
-    this.destaque = destaque
-    this.to = to
+    this.destacado = destacado
   }
 }
 

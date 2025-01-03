@@ -1,4 +1,4 @@
-class Menu {
+class Menus {
   image: string
   title: string
   description: string
@@ -12,4 +12,4 @@ class Menu {
   }
 }
 
-export default Menu
+export default Menus

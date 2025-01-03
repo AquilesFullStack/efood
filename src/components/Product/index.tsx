@@ -12,40 +12,38 @@ import estrela from '../../assets/estrela.png'
 import Button from '../Button'
 
 type Props = {
-  imagem: string
-  title: string
-  nota: string
-  description: string
-  destaque: string[]
-  tipo: string[]
-  to?: string
+  capa: string
+  titulo: string
+  avaliacao: number
+  descricao: string
+  destacado: Boolean
+  tipo: string
 }
 
 const Restaurant = ({
-  title,
-  imagem,
-  nota,
-  description,
-  destaque,
-  tipo,
-  to
+  titulo,
+  capa,
+  avaliacao,
+  descricao,
+  destacado,
+  tipo
 }: Props) => (
   <Card>
-    <img className="foto" src={imagem} alt={title} />
+    <img className="foto" src={capa} alt={titulo} />
     <Cards>
       <Tnota>
-        <Titulo>{title}</Titulo>
+        <Titulo>{titulo}</Titulo>
         <Nota>
-          <p>{nota}</p>
+          <p>{avaliacao}</p>
           <img src={estrela} alt="Ícone de avaliação" />
         </Nota>
       </Tnota>
-      <Descricao>{description}</Descricao>
+      <Descricao>{descricao}</Descricao>
       <Tags>
-        {destaque.length > 0 && <Tag>{destaque}</Tag>}
+        {/* <Tag>{destacado}</Tag> */}
         <Tag>{tipo}</Tag>
       </Tags>
-      <Button type="link" title={`Ver ${title}`} to={to}>
+      <Button type="link" title={`Ver ${titulo}`}>
         Saiba Mais
       </Button>
     </Cards>
