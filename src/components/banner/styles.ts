@@ -12,11 +12,15 @@ export const Imagem = styled.div`
   align-items: start;
   padding: 40px 0px;
   margin-bottom: 80px;
+
+  > .container {
+    justify-content: space-between;
+  }
 `
 
 export const Culinaria = styled.h2`
   font-size: 32px;
-  font-weight: 100;
+  font-weight: thin;
   color: ${cores.branco};
 `
 
