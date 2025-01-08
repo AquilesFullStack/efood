@@ -13,7 +13,6 @@ export type Place = {
   descricao: string
   capa: string
   cardapio: {
-    tipo: string
     foto: string
     preco: number
     id: number
