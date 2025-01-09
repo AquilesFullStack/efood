@@ -6,26 +6,39 @@ import { Place } from '../Home'
 import Banner from '../../components/banner'
 import MenuList from '../../components/Menu'
 
+export type Cardapio = {
+  id: number
+  foto: string
+  preco: number
+  nome: string
+  descricao: string
+  porcao: string
+}
+
 const Menu = () => {
   const { id } = useParams()
 
-  const [menus, setMenu] = useState<Place[]>([])
+  const [cardapio, setCardapio] = useState<Cardapio[]>([])
 
   useEffect(() => {
     fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
       .then((res) => res.json())
-      .then((res) => setMenu(res))
+      .then((res) => {
+        console.log('Dados recebidos da API:', res)
+        setCardapio(res.cardapio || []) // Garanta que `cardapio` seja definido
+      })
+      .catch((error) => console.error('Erro ao buscar dados:', error))
   }, [id])
 
-  if (!menus) {
-    return <h3>Carregando...</h3>
+  if (!cardapio.length) {
+    return <h3>Carregando ou sem itens no menu...</h3>
   }
 
   return (
     <>
       <HeaderRestaurant />
       <Banner />
-      <MenuList place={menus} />
+      <MenuList place={cardapio} />
       <Footer />
     </>
   )

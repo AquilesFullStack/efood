@@ -5,6 +5,8 @@ import Footer from '../../components/Footer'
 import { useEffect, useState } from 'react'
 
 export type Place = {
+  preco: number
+  foto: string
   id: number
   titulo: string
   destacado: boolean
