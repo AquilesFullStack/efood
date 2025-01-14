@@ -5,6 +5,7 @@ export const Card = styled.div`
   max-width: 320px;
   position: relative;
   background-color: ${cores.laranja};
+  padding: 8px;
   margin-bottom: 32px;
   > img {
     width: 304px;
@@ -29,10 +30,9 @@ export const Descricao = styled.p`
 `
 
 export const Botao = styled.button`
-  background-color: ${cores.amarelo}
+  background-color: ${cores.amarelo};
   width: 304px;
   height: 24px;
   border: none;
-  margin-bottom: 8px;
   text-align: center;
 `

@@ -15,12 +15,14 @@ const Banner = () => {
   }, [id])
 
   return (
-    <Imagem style={{ backgroundImage: `url(${menu?.capa})` }}>
-      <div className="container">
-        <Culinaria>{menu?.tipo}</Culinaria>
-        <Nome>{menu?.titulo}</Nome>
-      </div>
-    </Imagem>
+    <div>
+      <Imagem style={{ backgroundImage: `url(${menu?.capa})` }}>
+        <div className="container">
+          <Culinaria>{menu?.tipo}</Culinaria>
+          <Nome>{menu?.titulo}</Nome>
+        </div>
+      </Imagem>
+    </div>
   )
 }
 

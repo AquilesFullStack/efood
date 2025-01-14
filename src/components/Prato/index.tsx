@@ -10,11 +10,18 @@ type Props = {
 }
 
 const Prato = ({ foto, preco, id, nome, descricao, porcao }: Props) => {
+  const getDescricao = (descricao: string) => {
+    if (descricao.length > 120) {
+      return descricao.slice(0, 100) + '...'
+    }
+    return descricao
+  }
+
   return (
     <Card>
       <img className="foto" src={foto} alt={nome} />
       <Titulo>{nome}</Titulo>
-      <Descricao>{descricao}</Descricao>
+      <Descricao>{getDescricao(descricao)}</Descricao>
       <Botao>Adicionar ao carrinho </Botao>
     </Card>
   )
