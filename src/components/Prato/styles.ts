@@ -4,6 +4,7 @@ import { cores } from '../../styles'
 export const Card = styled.div`
   max-width: 320px;
   position: relative;
+  background-color: ${cores.laranja};
   margin-bottom: 32px;
   > img {
     width: 304px;
@@ -15,6 +16,7 @@ export const Titulo = styled.h3`
   font-size: 16px;
   display: flex;
   padding-top: 8px;
+  color: ${cores.amarelo};
 `
 
 export const Descricao = styled.p`
@@ -23,6 +25,7 @@ export const Descricao = styled.p`
   display: block;
   margin-top: 8px;
   padding-bottom: 8px;
+  color: ${cores.amarelo};
 `
 
 export const Botao = styled.button`
@@ -31,4 +34,5 @@ export const Botao = styled.button`
   height: 24px;
   border: none;
   margin-bottom: 8px;
+  text-align: center;
 `

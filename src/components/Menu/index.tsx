@@ -1,6 +1,5 @@
-import { Place } from '../../pages/Home'
 import Prato from '../Prato'
-import { List } from './styles'
+import { List, Item } from './styles'
 
 export type Cardapio = {
   id: number
@@ -12,14 +11,14 @@ export type Cardapio = {
 }
 
 export type Props = {
-  place: Cardapio[] // Agora o tipo é uma lista de Cardapio
+  place: Cardapio[]
 }
 
 const MenuList = ({ place }: Props) => (
   <div className="container">
     <List>
       {place.map((item) => (
-        <li key={item.id}>
+        <Item key={item.id}>
           <Prato
             id={item.id}
             foto={item.foto}
@@ -28,7 +27,7 @@ const MenuList = ({ place }: Props) => (
             descricao={item.descricao}
             porcao={item.porcao}
           />
-        </li>
+        </Item>
       ))}
     </List>
   </div>

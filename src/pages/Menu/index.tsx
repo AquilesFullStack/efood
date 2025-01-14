@@ -24,8 +24,7 @@ const Menu = () => {
     fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
       .then((res) => res.json())
       .then((res) => {
-        console.log('Dados recebidos da API:', res)
-        setCardapio(res.cardapio || []) // Garanta que `cardapio` seja definido
+        setCardapio(res.cardapio || [])
       })
       .catch((error) => console.error('Erro ao buscar dados:', error))
   }, [id])

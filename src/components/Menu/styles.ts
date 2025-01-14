@@ -6,3 +6,7 @@ export const List = styled.ul`
   column-gap: 32px;
   margin-top: 32px;
 `
+
+export const Item = styled.li`
+  list-style: none;
+`
