@@ -67,6 +67,7 @@ export const Tag = styled.div`
   padding: 6px 10px;
   margin-right: 8px;
 `
+
 export const Tags = styled.div`
   display: flex;
   position: absolute;

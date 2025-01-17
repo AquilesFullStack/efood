@@ -10,6 +10,7 @@ import {
 } from './styles'
 import estrela from '../../assets/estrela.png'
 import { ButtonLink } from '../Button/styles'
+import styled from 'styled-components'
 
 type Props = {
   capa: string
@@ -20,6 +21,10 @@ type Props = {
   tipo: string
   id: number
 }
+
+const DestaqueTag = styled(Tag)<{ destacado: boolean }>`
+  display: ${(props) => (props.destacado ? 'inline-block' : 'none')};
+`
 
 const Restaurant = ({
   titulo,
@@ -43,7 +48,9 @@ const Restaurant = ({
         </Tnota>
         <Descricao>{descricao}</Descricao>
         <Tags>
-          <Tag>{destacado}</Tag>
+          <DestaqueTag destacado={destacado}>
+            {destacado ? 'Destaques da semana' : ''}
+          </DestaqueTag>
           <Tag>{tipo}</Tag>
         </Tags>
         <ButtonLink to={`/menu/${id}`} type="link" title={`Ver ${titulo}`}>

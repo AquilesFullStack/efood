@@ -6,12 +6,10 @@ export const Card = styled.div`
   position: relative;
   background-color: ${cores.laranja};
   padding: 8px;
-  margin-bottom: 32px;
-  > img {
-    width: 304px;
-    height: 167px;
-  }
+  margin-bottom: 28px;
 `
+
+export const imagem = styled.div``
 
 export const Titulo = styled.h3`
   font-size: 16px;

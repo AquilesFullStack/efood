@@ -19,7 +19,14 @@ const Prato = ({ foto, preco, id, nome, descricao, porcao }: Props) => {
 
   return (
     <Card>
-      <img className="foto" src={foto} alt={nome} />
+      <div
+        style={{
+          backgroundImage: `url(${foto})`,
+          backgroundSize: 'cover',
+          width: `304px`,
+          height: `167px`
+        }}
+      ></div>
       <Titulo>{nome}</Titulo>
       <Descricao>{getDescricao(descricao)}</Descricao>
       <Botao>Adicionar ao carrinho </Botao>
