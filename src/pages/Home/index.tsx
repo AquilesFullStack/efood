@@ -4,11 +4,6 @@ import RestaurantList from '../../components/RestaurantList'
 import Footer from '../../components/Footer'
 import { useEffect, useState } from 'react'
 
-export interface GalerryItem {
-  type: 'image'
-  url: string
-}
-
 export type Place = {
   preco: number
   foto: string
@@ -26,7 +21,6 @@ export type Place = {
     nome: string
     descricao: string
     porcao: string
-    gallery: GalerryItem[]
   }
 }
 

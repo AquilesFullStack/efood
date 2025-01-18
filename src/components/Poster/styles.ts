@@ -2,18 +2,50 @@ import styled from 'styled-components'
 import { cores } from '../../styles'
 
 export const Poster = styled.div`
-  display: flex;
-  position: absolute;
-  top: 490px;
-  left: 171px;
-  width: 1024px;
-  height: 344px;
-  background-color: ${cores.laranja};
-  padding: 32px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  &.visivel {
+    display: flex;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
 `
 
-export const Imagem = styled.div``
+export const PosterContent = styled.div`
+  display: flex;
+  position: relative;
+  z-index: 1;
+  max-width: 1024px;
+  background-color: ${cores.laranja};
+  padding: 32px;
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  > img {
+    display: flex;
+    width: 280px;
+    height: 280px;
+    margin-right: 24px;
+    object-fit: cover;
+  }
+`
 
 export const Titulo = styled.h3`
   font-size: 18px;
@@ -26,4 +58,20 @@ export const Descricao = styled.p`
   font-weight: 400;
   width: 656px;
   color: ${cores.branco};
+  line-height: 22px;
+  margin: 16px 0;
+`
+
+export const Fechar = styled.button`
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  img {
+    height: 16px;
+    width: 16px;
+  }
 `

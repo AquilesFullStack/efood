@@ -2,7 +2,6 @@ import Footer from '../../components/Footer'
 import HeaderRestaurant from '../../components/Header_restaurante'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Place } from '../Home'
 import Banner from '../../components/banner'
 import MenuList from '../../components/Menu'
 
