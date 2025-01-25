@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Banner from '../../components/banner'
 import MenuList from '../../components/Menu'
+import Cart from '../../components/Cart'
 
 export type Cardapio = {
   id: number
@@ -38,6 +39,7 @@ const Menu = () => {
       <Banner />
       <MenuList place={cardapio} />
       <Footer />
+      <Cart />
     </>
   )
 }
