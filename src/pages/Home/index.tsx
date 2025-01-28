@@ -1,8 +1,7 @@
 import Header from '../../components/Header'
 import RestaurantList from '../../components/RestaurantList'
-
-import Footer from '../../components/Footer'
 import { useEffect, useState } from 'react'
+import { useGetPlaceQuery } from '../../services/api'
 
 export type Place = {
   preco: number
@@ -25,20 +24,18 @@ export type Place = {
 }
 
 const Home = () => {
-  const [locais, setLocais] = useState<Place[]>([])
+  const { data: restaurantes } = useGetPlaceQuery()
 
-  useEffect(() => {
-    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
-      .then((res) => res.json())
-      .then((res) => setLocais(res))
-  }, [])
-  return (
-    <>
-      <Header />
-      <RestaurantList place={locais} />
-      <Footer />
-    </>
-  )
+  if (restaurantes) {
+    return (
+      <>
+        <Header />
+        <RestaurantList place={restaurantes} />
+      </>
+    )
+  }
+
+  return <h4>Carregando...</h4>
 }
 
 export default Home

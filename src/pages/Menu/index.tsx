@@ -1,45 +1,32 @@
-import Footer from '../../components/Footer'
 import HeaderRestaurant from '../../components/Header_restaurante'
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
 import Banner from '../../components/banner'
 import MenuList from '../../components/Menu'
-import Cart from '../../components/Cart'
-
-export type Cardapio = {
-  id: number
-  foto: string
-  preco: number
-  nome: string
-  descricao: string
-  porcao: string
-}
+import { useGetMenuQuery } from '../../services/api'
 
 const Menu = () => {
   const { id } = useParams()
 
-  const [cardapio, setCardapio] = useState<Cardapio[]>([])
+  const { data: menuData, isLoading } = useGetMenuQuery(id!)
+  console.log('Valor de menu recebido em MenuList:', menuData)
 
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setCardapio(res.cardapio || [])
-      })
-      .catch((error) => console.error('Erro ao buscar dados:', error))
-  }, [id])
+  const cardapio = menuData?.cardapio ?? []
 
-  if (!cardapio.length) {
+  if (isLoading) {
     return <h3>Carregando ou sem itens no menu...</h3>
   }
+
+  if (!menuData?.cardapio?.length) {
+    return <h3>Sem itens no menu...</h3>
+  }
+
+  const cardapio = menuData.cardapio
 
   return (
     <>
       <HeaderRestaurant />
       <Banner />
-      <MenuList place={cardapio} />
-      <Footer />
-      <Cart />
+      <MenuList menu={cardapio} />
     </>
   )
 }

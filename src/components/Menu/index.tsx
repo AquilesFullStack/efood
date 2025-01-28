@@ -1,5 +1,4 @@
 import { useState } from 'react'
-// import Poste from '../Poster'
 import Prato from '../Prato'
 import {
   List,
@@ -13,25 +12,26 @@ import {
 import fechar from '../../assets/close.png'
 import { Botao } from '../Restaurantes/styles'
 import { cores } from '../../styles'
+import { Place } from '../../pages/Home'
 
-export type Cardapio = {
-  id: number
+export type CardapioItem = {
   foto: string
   preco: number
+  id: number
   nome: string
   descricao: string
   porcao: string
 }
 
 export type Props = {
-  place: Cardapio[]
+  menu: CardapioItem[]
 }
 
-const MenuList = ({ place }: Props) => {
+const MenuList = ({ menu }: Props) => {
   const [modalEstaAberto, setModalEstaAberto] = useState(false)
-  const [modalItem, setModalItem] = useState<Cardapio | null>(null)
+  const [modalItem, setModalItem] = useState<CardapioItem | null>(null)
 
-  const abrirModal = (item: Cardapio) => {
+  const abrirModal = (item: CardapioItem) => {
     setModalItem(item)
     setModalEstaAberto(true)
   }
@@ -44,7 +44,7 @@ const MenuList = ({ place }: Props) => {
   return (
     <>
       <List className="container">
-        {place.map((item) => (
+        {menu.map((item) => (
           <Item key={item.id} onClick={() => abrirModal(item)}>
             <Prato
               id={item.id}
@@ -77,7 +77,7 @@ const MenuList = ({ place }: Props) => {
                 <Titulo>{modalItem.nome}</Titulo>
               </header>
               <Descricao>{modalItem.descricao}</Descricao>
-              <Descricao>Serve: {modalItem.porcao}</Descricao>
+              <Descricao>Serve: {modalItem.descricao}</Descricao>
               <Botao
                 style={{
                   width: '208px',
