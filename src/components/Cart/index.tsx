@@ -1,5 +1,4 @@
 import { CartTab, PratoItem, Prices, Sidebar, Button, Overlay } from './styles'
-import foto from '../../assets/pizzaa.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
 import { close, remove } from '../../store/reducers/carts'
@@ -14,7 +13,7 @@ export const Cart = () => {
   }
   const getTotalPrice = () => {
     return items.reduce((acumulador, valorAtual) => {
-      return (acumulador += valorAtual.preco)
+      return (acumulador += valorAtual.cardapio[0].preco)
     }, 0)
   }
   const removeItem = (id: number) => {
@@ -27,12 +26,15 @@ export const Cart = () => {
         <ul>
           {items.map((item) => (
             <PratoItem key={item.id}>
-              <img src={item.cardapio.foto} alt={item.cardapio.nome} />
+              <img src={item.cardapio[0].foto} alt={item.cardapio[0].foto} />
               <div>
-                <h3>{item.cardapio.nome}é </h3>
-                <span>{item.cardapio.preco}</span>
+                <h3>{item.cardapio[0].foto}é </h3>
+                <span>{item.cardapio[0].preco}</span>
               </div>
-              <button onClick={() => removeItem(item.id)} type="button" />
+              <button
+                onClick={() => removeItem(item.cardapio[0].id)}
+                type="button"
+              />
             </PratoItem>
           ))}
         </ul>

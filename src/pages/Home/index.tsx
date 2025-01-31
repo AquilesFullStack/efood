@@ -1,11 +1,17 @@
 import Header from '../../components/Header'
 import RestaurantList from '../../components/RestaurantList'
-import { useEffect, useState } from 'react'
 import { useGetPlaceQuery } from '../../services/api'
 
-export type Place = {
-  preco: number
+export interface CardapioItem {
   foto: string
+  preco: number
+  id: number
+  nome: string
+  descricao: string
+  porcao: string
+}
+
+export type Place = {
   id: number
   titulo: string
   destacado: boolean
@@ -13,14 +19,7 @@ export type Place = {
   avaliacao: number
   descricao: string
   capa: string
-  cardapio: {
-    foto: string
-    preco: number
-    id: number
-    nome: string
-    descricao: string
-    porcao: string
-  }
+  cardapio: CardapioItem[]
 }
 
 const Home = () => {

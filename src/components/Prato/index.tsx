@@ -2,19 +2,14 @@ import { Card, Titulo, Descricao, Botao } from './styles'
 
 type Props = {
   foto: string
-  preco: number
-  id: number
   nome: string
-  descricao: string
-  porcao: string
+  descricao?: string
 }
 
-const Prato = ({ foto, preco, id, nome, descricao, porcao }: Props) => {
+const Prato = ({ foto, nome, descricao }: Props) => {
   const getDescricao = (descricao: string) => {
-    if (descricao.length > 120) {
-      return descricao.slice(0, 100) + '...'
-    }
-    return descricao
+    if (!descricao) return ''
+    return descricao.length > 120 ? descricao.slice(0, 100) + '...' : descricao
   }
 
   return (
@@ -28,7 +23,7 @@ const Prato = ({ foto, preco, id, nome, descricao, porcao }: Props) => {
         }}
       ></div>
       <Titulo>{nome}</Titulo>
-      <Descricao>{getDescricao(descricao)}</Descricao>
+      <Descricao>{getDescricao(descricao ?? '')}</Descricao>
       <Botao>Adicionar ao carrinho </Botao>
     </Card>
   )

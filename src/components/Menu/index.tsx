@@ -1,101 +1,67 @@
-import { useState } from 'react'
 import Prato from '../Prato'
-import {
-  List,
-  Item,
-  Descricao,
-  Fechar,
-  Poster,
-  PosterContent,
-  Titulo
-} from './styles'
-import fechar from '../../assets/close.png'
+import { List, Item, Poster, PosterContent, Fechar, Overlay } from './styles'
 import { Botao } from '../Restaurantes/styles'
 import { cores } from '../../styles'
-import { Place } from '../../pages/Home'
-
-export type CardapioItem = {
-  foto: string
-  preco: number
-  id: number
-  nome: string
-  descricao: string
-  porcao: string
-}
+import { useDispatch, useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
+import { aberto, fechado } from '../../store/reducers/poster'
+import { CardapioItem } from '../../pages/Home'
+import fechar from '../../assets/close.png'
 
 export type Props = {
   menu: CardapioItem[]
 }
 
-const MenuList = ({ menu }: Props) => {
-  const [modalEstaAberto, setModalEstaAberto] = useState(false)
-  const [modalItem, setModalItem] = useState<CardapioItem | null>(null)
+const MenuItem = ({ item }: { item: CardapioItem }) => {
+  const { isOpen } = useSelector((state: RootReducer) => state.post)
+  const dispatch = useDispatch()
 
-  const abrirModal = (item: CardapioItem) => {
-    setModalItem(item)
-    setModalEstaAberto(true)
-  }
-
-  const fecharModal = () => {
-    setModalEstaAberto(false)
-    setModalItem(null)
-  }
+  const fecharPost = () => dispatch(fechado())
+  const abrirPost = (itemId: number) => dispatch(aberto(itemId))
 
   return (
-    <>
-      <List className="container">
-        {menu.map((item) => (
-          <Item key={item.id} onClick={() => abrirModal(item)}>
-            <Prato
-              id={item.id}
-              foto={item.foto}
-              preco={item.preco}
-              nome={item.nome}
-              descricao={item.descricao}
-              porcao={item.porcao}
-            />
-          </Item>
-        ))}
-      </List>
-      {modalEstaAberto && modalItem && (
-        <Poster className="visivel">
-          <PosterContent className="container">
-            <Fechar>
-              <img src={fechar} alt="fechar" onClick={fecharModal} />
-            </Fechar>
-            <img
-              src={modalItem.foto}
-              alt={`Foto do prato: ${modalItem.nome}`}
-            />
-            <div
+    <Item key={item.id} onClick={() => abrirPost(item.id)}>
+      <Prato foto={item.foto} nome={item.nome} descricao={item.descricao} />
+      <Poster className={isOpen ? 'is-open' : ''}>
+        <PosterContent className="container">
+          <Fechar onClick={fecharPost}>
+            <img src={fechar} alt="Fechar detalhe do prato" />
+          </Fechar>
+          <img src={item.foto} alt={`Foto do prato: ${item.nome}`} />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <header>
+              <h3>{item.nome}</h3>
+            </header>
+            <p>{item.descricao}</p>
+            <p>Serve: {item.porcao}</p>
+            <Botao
               style={{
-                display: 'flex',
-                flexDirection: 'column'
+                width: '208px',
+                background: cores.branco,
+                color: cores.laranja,
+                fontWeight: 'bold',
+                fontSize: '13px',
+                padding: '4px 4px'
               }}
             >
-              <header>
-                <Titulo>{modalItem.nome}</Titulo>
-              </header>
-              <Descricao>{modalItem.descricao}</Descricao>
-              <Descricao>Serve: {modalItem.descricao}</Descricao>
-              <Botao
-                style={{
-                  width: '208px',
-                  background: cores.branco,
-                  color: cores.laranja,
-                  fontWeight: 'bold',
-                  fontSize: '13px',
-                  padding: '4px 4px'
-                }}
-              >
-                Adicionar ao Carrinho - R$ {modalItem.preco.toFixed(2)}
-              </Botao>
-            </div>
-          </PosterContent>
-          <div className="overlay" onClick={fecharModal}></div>
-        </Poster>
-      )}
-    </>
+              Adicionar ao Carrinho - R$ {item.preco}
+            </Botao>
+          </div>
+        </PosterContent>
+        <Overlay onClick={fecharPost} />
+      </Poster>
+    </Item>
   )
 }
+
+const MenuList = ({ menu }: Props) => {
+  return (
+    <List className="container">
+      {menu.map((item) => (
+        <MenuItem key={item.id} item={item} />
+      ))}
+    </List>
+  )
+}
+
 export default MenuList
