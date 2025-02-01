@@ -12,7 +12,7 @@ export const Poster = styled.div`
   align-items: center;
   justify-content: center;
 
-  &.visivel {
+  &.is-open {
     display: flex;
   }
 
@@ -26,7 +26,7 @@ export const Poster = styled.div`
   }
 `
 
-export const PosterContent = styled.div`
+export const PosterContent = styled.li`
   display: flex;
   position: relative;
   z-index: 1;

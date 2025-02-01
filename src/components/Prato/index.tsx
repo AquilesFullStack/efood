@@ -3,7 +3,7 @@ import { Card, Titulo, Descricao, Botao } from './styles'
 type Props = {
   foto: string
   nome: string
-  descricao?: string
+  descricao: string
 }
 
 const Prato = ({ foto, nome, descricao }: Props) => {

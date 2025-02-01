@@ -4,7 +4,7 @@ import { RootReducer } from '../../store'
 import { close, remove } from '../../store/reducers/carts'
 
 export const Cart = () => {
-  const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
+  const { isOpen, cardapio } = useSelector((state: RootReducer) => state.cart)
 
   const dispatch = useDispatch()
 
@@ -12,8 +12,8 @@ export const Cart = () => {
     dispatch(close())
   }
   const getTotalPrice = () => {
-    return items.reduce((acumulador, valorAtual) => {
-      return (acumulador += valorAtual.cardapio[0].preco)
+    return cardapio.reduce((acumulador, valorAtual) => {
+      return (acumulador += valorAtual.preco)
     }, 0)
   }
   const removeItem = (id: number) => {
@@ -24,17 +24,14 @@ export const Cart = () => {
       <Overlay onClick={closedCart} />
       <Sidebar>
         <ul>
-          {items.map((item) => (
+          {cardapio.map((item) => (
             <PratoItem key={item.id}>
-              <img src={item.cardapio[0].foto} alt={item.cardapio[0].foto} />
+              <img src={item.foto} alt={item.nome} />
               <div>
-                <h3>{item.cardapio[0].foto}é </h3>
-                <span>{item.cardapio[0].preco}</span>
+                <h3>{item.nome}é </h3>
+                <span>{item.preco}</span>
               </div>
-              <button
-                onClick={() => removeItem(item.cardapio[0].id)}
-                type="button"
-              />
+              <button onClick={() => removeItem(item.id)} type="button" />
             </PratoItem>
           ))}
         </ul>

@@ -57,6 +57,10 @@ export const PosterContent = styled.div`
     margin-right: 24px;
     object-fit: cover;
   }
+
+  &.is-open {
+    display: flex;
+  }
 `
 
 export const Titulo = styled.h3`

@@ -1,28 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { CardapioItem, Place } from '../../pages/Home'
+// import { createSlice } from '@reduxjs/toolkit'
+// import { Place } from '../../pages/Home'
 
-type PostState = {
-  items: Place[]
-  isOpen: number | null
-}
+// type PostState = {
+//   items: Place[]
+//   isOpen: boolean
+// }
 
-const initialState: PostState = {
-  items: [],
-  isOpen: null
-}
+// const initialState: PostState = {
+//   items: [],
+//   isOpen: false
+// }
 
-const postSlice = createSlice({
-  name: 'post',
-  initialState,
-  reducers: {
-    aberto: (state, action) => {
-      state.isOpen = action.payload
-    },
-    fechado: (state) => {
-      state.isOpen = null
-    }
-  }
-})
+// const postSlice = createSlice({
+//   name: 'post',
+//   initialState,
+//   reducers: {
+//     aberto: (state) => {
+//       state.isOpen = true
+//     },
+//     fechado: (state) => {
+//       state.isOpen = false
+//     }
+//   }
+// })
 
-export const { aberto, fechado } = postSlice.actions
-export default postSlice.reducer
+// export const { aberto, fechado } = postSlice.actions
+// export default postSlice.reducer
+
+export default {}
