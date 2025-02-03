@@ -2,19 +2,25 @@ import { Imagine, Titulo } from './styles'
 
 import headerImg from '../../assets/Vector.png'
 import logo from '../../assets/logo.png'
+import { useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
 
-const HeaderRestaurant = () => (
-  <Imagine style={{ backgroundImage: `url(${headerImg})` }}>
-    <div className="container">
-      <a href="/">
-        <Titulo>Restaurantes</Titulo>
-      </a>
-      <a href="/">
-        <img src={logo} alt="Logo do site" />
-      </a>
-      <Titulo>0 produto(s) no carrinho</Titulo>
-    </div>
-  </Imagine>
-)
+const HeaderRestaurant = () => {
+  const { cardapio } = useSelector((state: RootReducer) => state.cart)
+
+  return (
+    <Imagine style={{ backgroundImage: `url(${headerImg})` }}>
+      <div className="container">
+        <a href="/">
+          <Titulo>Restaurantes</Titulo>
+        </a>
+        <a href="/">
+          <img src={logo} alt="Logo do site" />
+        </a>
+        <Titulo>{cardapio.length} produto(s) no carrinho</Titulo>
+      </div>
+    </Imagine>
+  )
+}
 
 export default HeaderRestaurant
