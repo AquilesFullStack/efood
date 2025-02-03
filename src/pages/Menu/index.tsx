@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import Banner from '../../components/banner'
 import MenuList from '../../components/Menu'
 import { useGetMenuQuery } from '../../services/api'
-import Poste from '../../components/Poster'
 
 const Menu = () => {
   const { id } = useParams()
@@ -15,11 +14,12 @@ const Menu = () => {
   }
 
   const cardapio = menu.cardapio
+
   return (
     <>
       <HeaderRestaurant />
       <Banner />
-      <MenuList menu={cardapio} prato={menu} />
+      <MenuList menu={cardapio} />
     </>
   )
 }

@@ -3,13 +3,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { CardapioItem, Place } from '../../pages/Home'
 
 type CartState = {
-  items: Place[]
   cardapio: CardapioItem[]
   isOpen: boolean
 }
 
 const initialState: CartState = {
-  items: [],
   cardapio: [],
   isOpen: false
 }
@@ -28,7 +26,9 @@ const cartSlice = createSlice({
       }
     },
     remove: (state, action: PayloadAction<number>) => {
-      state.items = state.items.filter((item) => item.id !== action.payload)
+      state.cardapio = state.cardapio.filter(
+        (item) => item.id !== action.payload
+      )
     },
     open: (state) => {
       state.isOpen = true

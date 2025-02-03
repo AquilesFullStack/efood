@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Prato from '../Prato'
 import { List, Item } from './styles'
-import { CardapioItem, Place } from '../../pages/Home'
+import { CardapioItem } from '../../pages/Home'
 import fechar from '../../assets/close.png'
 import {
   Descricao,
@@ -17,21 +17,20 @@ import { add, open } from '../../store/reducers/carts'
 
 export type Props = {
   menu: CardapioItem[]
-  prato: CardapioItem
 }
 
-const MenuList = ({ menu, prato }: Props) => {
+const MenuList = ({ menu }: Props) => {
   const [modal, setModal] = useState<{
     isVisible: boolean
-    prato?: CardapioItem
+    menu?: CardapioItem
   }>({
     isVisible: false
   })
 
-  const abrirModal = (prato: CardapioItem) => {
+  const abrirModal = (menu: CardapioItem) => {
     setModal({
       isVisible: true,
-      prato
+      menu
     })
   }
 
@@ -43,8 +42,10 @@ const MenuList = ({ menu, prato }: Props) => {
   const dispatch = useDispatch()
 
   const addToCart = () => {
-    dispatch(add())
-    dispatch(open())
+    if (modal.menu) {
+      dispatch(add(modal.menu))
+      dispatch(open())
+    }
   }
 
   return (
@@ -52,21 +53,17 @@ const MenuList = ({ menu, prato }: Props) => {
       <List className="container">
         {menu.map((cardapio) => (
           <Item key={cardapio.id} onClick={() => abrirModal(cardapio)}>
-            <Prato
-              foto={cardapio.foto}
-              nome={cardapio.nome}
-              descricao={cardapio.descricao}
-            />
+            <Prato prato={cardapio} />
           </Item>
         ))}
       </List>
-      {modal.isVisible && modal.prato && (
+      {modal.isVisible && modal.menu && (
         <Poster className="is-open">
           <PosterContent>
             <Fechar onClick={fecharModal}>
               <img src={fechar} alt="Fechar" />
             </Fechar>
-            <img src={modal.prato.foto} alt={modal.prato.nome} />
+            <img src={modal.menu.foto} alt={modal.menu.nome} />
             <div
               style={{
                 display: 'flex',
@@ -74,10 +71,10 @@ const MenuList = ({ menu, prato }: Props) => {
               }}
             >
               <header>
-                <Titulo>{modal.prato.nome}</Titulo>
+                <Titulo>{modal.menu.nome}</Titulo>
               </header>
-              <Descricao>{modal.prato.descricao}</Descricao>
-              <Descricao>Serve: {modal.prato.porcao}</Descricao>
+              <Descricao>{modal.menu.descricao}</Descricao>
+              <Descricao>Serve: {modal.menu.porcao}</Descricao>
               <Botao
                 style={{
                   width: '208px',
@@ -88,7 +85,7 @@ const MenuList = ({ menu, prato }: Props) => {
                 }}
                 onClick={addToCart}
               >
-                Adicionar ao Carrinho - R${modal.prato.preco}
+                Adicionar ao Carrinho - R${modal.menu.preco}
               </Botao>
             </div>
           </PosterContent>

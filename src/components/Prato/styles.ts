@@ -7,6 +7,7 @@ export const Card = styled.div`
   background-color: ${cores.laranja};
   padding: 8px;
   margin-bottom: 28px;
+  cursor: pointer;
 `
 
 export const imagem = styled.div``
@@ -33,4 +34,5 @@ export const Botao = styled.button`
   height: 24px;
   border: none;
   text-align: center;
+  cursor: pointer;
 `
