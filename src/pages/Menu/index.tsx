@@ -13,13 +13,11 @@ const Menu = () => {
     return <h3>Carregando ou sem itens no menu...</h3>
   }
 
-  const cardapio = menu.cardapio
-
   return (
     <>
       <HeaderRestaurant />
       <Banner />
-      <MenuList menu={cardapio} />
+      <MenuList menu={menu.cardapio} />
     </>
   )
 }

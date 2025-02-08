@@ -2,7 +2,7 @@ import Header from '../../components/Header'
 import RestaurantList from '../../components/RestaurantList'
 import { useGetPlaceQuery } from '../../services/api'
 
-export interface CardapioItem {
+export type CardapioItem = {
   foto: string
   preco: number
   id: number
