@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
 import { close, remove } from '../../store/reducers/carts'
 import { cores } from '../../styles'
+import Checkout from '../Checkout'
 
 export const Cart = () => {
   const { isOpen, cardapio } = useSelector((state: RootReducer) => state.cart)
@@ -57,6 +58,7 @@ export const Cart = () => {
                 <Button>Continuar com a entrega</Button>
               </>
             )}
+            <Checkout />
           </>
         )}
       </Sidebar>

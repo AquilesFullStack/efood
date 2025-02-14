@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import Banner from '../../components/banner'
 import MenuList from '../../components/Menu'
 import { useGetMenuQuery } from '../../services/api'
+import Checkout from '../../components/Checkout'
 
 const Menu = () => {
   const { id } = useParams()
