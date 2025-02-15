@@ -1,7 +1,8 @@
 import { useDispatch } from 'react-redux'
-import { Card, Titulo, Descricao, Botao } from './styles'
+import { Card, Titulo, Descricao } from './styles'
 import { add, open } from '../../store/reducers/carts'
 import { CardapioItem } from '../../pages/Home'
+import Button from '../Button'
 
 type Props = {
   prato: CardapioItem
@@ -32,7 +33,14 @@ const Prato = ({ prato }: Props) => {
         ></div>
         <Titulo>{prato.nome}</Titulo>
         <Descricao>{getDescricao(prato.descricao ?? '')}</Descricao>
-        <Botao onClick={addToCart}>Adicionar ao carrinho </Botao>
+        <Button
+          onClick={addToCart}
+          type="button"
+          title="Clique aqui para adicionar o produto ao carrinho"
+          variant={'primary'}
+        >
+          Adicionar ao carrinho
+        </Button>
       </Card>
     </>
   )

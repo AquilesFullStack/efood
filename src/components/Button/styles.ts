@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom'
 import { Props } from '.'
 
 export const ButtonContainer = styled.button<Props>`
-  background-color: ${cores.laranja};
+  background-color: ${(props) =>
+    props.variant === 'primary' ? cores.amarelo : cores.laranja};
   border: none;
   padding: 4px 6px;
   font-size: 14px;
-  color: ${cores.amarelo};
+  font-weight: bold;
+  color: ${cores.laranja};
+  width: 218px;
 `
 
 export const ButtonLink = styled(Link)`

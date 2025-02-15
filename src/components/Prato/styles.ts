@@ -27,12 +27,3 @@ export const Descricao = styled.p`
   padding-bottom: 8px;
   color: ${cores.amarelo};
 `
-
-export const Botao = styled.button`
-  background-color: ${cores.amarelo};
-  width: 304px;
-  height: 24px;
-  border: none;
-  text-align: center;
-  cursor: pointer;
-`

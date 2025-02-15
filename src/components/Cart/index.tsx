@@ -1,8 +1,9 @@
-import { CartTab, PratoItem, Prices, Sidebar, Button, Overlay } from './styles'
+import { CartTab, PratoItem, Prices, Sidebar, Overlay } from './styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
-import { close, remove } from '../../store/reducers/carts'
-import { cores } from '../../styles'
+import { close, remove, openCheckoutOrder } from '../../store/reducers/carts'
+import Button from '../Button'
+import { parseToBrl, getTotalPrice } from '../Utils'
 import Checkout from '../Checkout'
 
 export const Cart = () => {
@@ -13,30 +14,20 @@ export const Cart = () => {
   const closedCart = () => {
     dispatch(close())
   }
-  const getTotalPrice = () => {
-    return cardapio.reduce((acumulador, valorAtual) => {
-      return (acumulador += valorAtual.preco)
-    }, 0)
-  }
+
   const removeItem = (id: number) => {
     dispatch(remove(id))
+  }
+
+  const openCheckout = () => {
+    dispatch(openCheckoutOrder())
   }
 
   return (
     <CartTab className={isOpen ? 'is-open' : ''}>
       <Overlay onClick={closedCart} />
       <Sidebar>
-        {cardapio.length === 0 ? (
-          <p
-            style={{
-              textAlign: 'center',
-              fontSize: '16px',
-              color: `${cores.amarelo}`
-            }}
-          >
-            O carrinho está vazio, adicione algum item.
-          </p>
-        ) : (
+        {cardapio.length > 0 ? (
           <>
             <ul>
               {cardapio.map((item) => (
@@ -44,23 +35,32 @@ export const Cart = () => {
                   <img src={item.foto} alt={item.nome} />
                   <div>
                     <h3>{item.nome}</h3>
-                    <span>R$ {item.preco.toFixed(2)}</span>
+                    <span>{parseToBrl(item.preco)}</span>
                   </div>
                   <button onClick={() => removeItem(item.id)} type="button" />
                 </PratoItem>
               ))}
             </ul>
-            {cardapio.length > 0 && (
-              <>
-                <Prices>
-                  Valor total: <span>R$ {getTotalPrice().toFixed(2)}</span>
-                </Prices>
-                <Button>Continuar com a entrega</Button>
-              </>
-            )}
-            <Checkout />
+            <Prices>
+              Valor total:{''}
+              <span>{parseToBrl(getTotalPrice(cardapio))}</span>
+            </Prices>
+            <Button
+              type="button"
+              title="Clique aqui para continuar com a compra"
+              variant="primary"
+              onClick={openCheckout}
+            >
+              Continuar com a entrega
+            </Button>
           </>
+        ) : (
+          <p className="empty-text">
+            O carrinho está vazio, adicione pelo menos um produto para continuar
+            a compra
+          </p>
         )}
+        <Checkout />
       </Sidebar>
     </CartTab>
   )

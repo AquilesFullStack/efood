@@ -15,6 +15,10 @@ export const InputGroup = styled.div<InputGroupProps>`
     margin-bottom: 8px;
     display: block;
     color: ${cores.amarelo};
+
+    &.error {
+      border: 1px solid red;
+    }
   }
 
   input {

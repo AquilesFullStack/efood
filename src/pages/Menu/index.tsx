@@ -3,15 +3,18 @@ import { useParams } from 'react-router-dom'
 import Banner from '../../components/banner'
 import MenuList from '../../components/Menu'
 import { useGetMenuQuery } from '../../services/api'
-import Checkout from '../../components/Checkout'
+
+type PlaceParams = {
+  id: string
+}
 
 const Menu = () => {
-  const { id } = useParams()
+  const { id } = useParams() as PlaceParams
 
-  const { data: menu } = useGetMenuQuery(id!)
+  const { data: menu } = useGetMenuQuery(id)
 
   if (!menu) {
-    return <h3>Carregando ou sem itens no menu...</h3>
+    return <h3>ADICIONAR LOADER</h3>
   }
 
   return (
