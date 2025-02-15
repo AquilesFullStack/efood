@@ -65,12 +65,12 @@ const MenuList = ({ menu }: Props) => {
               <Descricao>{modalItem.descricao}</Descricao>
               <Descricao>Serve: {modalItem.porcao}</Descricao>
               <Button
-                variant="primary"
+                variant="primaryP"
                 type="button"
                 title="Clique aqui para adicionar o produto ao carrinho"
                 onClick={() => addToCart(modalItem)}
               >
-                {`Adicionar ao Carrinho - R$${modalItem.preco}`}
+                {`Adicionar ao Carrinho - ${parseToBrl(modalItem.preco)}`}
               </Button>
             </div>
           </PosterContent>

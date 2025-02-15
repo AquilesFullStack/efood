@@ -37,7 +37,7 @@ const Prato = ({ prato }: Props) => {
           onClick={addToCart}
           type="button"
           title="Clique aqui para adicionar o produto ao carrinho"
-          variant={'primary'}
+          variant="primary"
         >
           Adicionar ao carrinho
         </Button>

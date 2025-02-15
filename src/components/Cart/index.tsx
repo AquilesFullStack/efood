@@ -7,7 +7,9 @@ import { parseToBrl, getTotalPrice } from '../Utils'
 import Checkout from '../Checkout'
 
 export const Cart = () => {
-  const { isOpen, cardapio } = useSelector((state: RootReducer) => state.cart)
+  const { isOpen, cardapio, order } = useSelector(
+    (state: RootReducer) => state.cart
+  )
 
   const dispatch = useDispatch()
 
@@ -22,6 +24,8 @@ export const Cart = () => {
   const openCheckout = () => {
     dispatch(openCheckoutOrder())
   }
+
+  console.log(order)
 
   return (
     <CartTab className={isOpen ? 'is-open' : ''}>
@@ -60,8 +64,8 @@ export const Cart = () => {
             a compra
           </p>
         )}
-        <Checkout />
       </Sidebar>
+      {order ? <Checkout /> : ''}
     </CartTab>
   )
 }

@@ -29,4 +29,10 @@ export const InputGroup = styled.div<InputGroupProps>`
   }
 `
 
-export {}
+export const Conteudo = styled.div`
+  display: none;
+
+  &.is-checkoutopen {
+    display: flex;
+  }
+`

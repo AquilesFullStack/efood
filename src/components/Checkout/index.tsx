@@ -15,13 +15,17 @@ import { clear, openCheckoutOrder } from '../../store/reducers/carts'
 import Button from '../Button'
 
 const Checkout = () => {
-  const [openedCheckout, setOpenedCheckout] = useState(true)
+  const [openedCheckout, setOpenedCheckout] = useState(false)
   const [purchase, { data, isSuccess, isLoading }] = usePurchaseMutation()
-  const { cardapio } = useSelector((state: RootReducer) => state.cart)
+  const { cardapio, order } = useSelector((state: RootReducer) => state.cart)
   const dispatch = useDispatch()
 
   const keepPayment = () => {
     setOpenedCheckout(false)
+  }
+
+  const backToAddress = () => {
+    setOpenedCheckout(true)
   }
 
   const form = useFormik({
@@ -119,7 +123,7 @@ const Checkout = () => {
   }
 
   return (
-    <div className="container">
+    <S.Conteudo className={order ? 'is-checkoutopen' : ''}>
       {isSuccess && data ? (
         <Card title={`Pedido realiado ${data?.orderId}`}>
           <>
@@ -153,7 +157,7 @@ const Checkout = () => {
         </Card>
       ) : (
         <form onSubmit={form.handleSubmit}>
-          {openedCheckout ? (
+          {order ? (
             <>
               <Card title="Entregas">
                 <>
@@ -232,14 +236,19 @@ const Checkout = () => {
                     />
                   </S.InputGroup>
                   <Button
-                    type="link"
+                    type="button"
                     title="Clique aqui para continuar com o pagamento"
                     variant="primary"
                     onClick={keepPayment}
                   >
                     Continuar com o pagamento
                   </Button>
-                  <button>Voltar para o carrinho</button>
+                  <Button
+                    type="button"
+                    title="Clique aqui para voltar para o carrinho"
+                  >
+                    Voltar para o carrinho
+                  </Button>
                 </>
               </Card>
             </>
@@ -331,7 +340,7 @@ const Checkout = () => {
           )}
         </form>
       )}
-    </div>
+    </S.Conteudo>
   )
 }
 
