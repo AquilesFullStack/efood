@@ -6,12 +6,14 @@ type CartState = {
   cardapio: CardapioItem[]
   isOpen: boolean
   order: boolean
+  orderCard: boolean
 }
 
 const initialState: CartState = {
   cardapio: [],
   isOpen: false,
-  order: false
+  order: false,
+  orderCard: false
 }
 
 const cartSlice = createSlice({
@@ -44,8 +46,14 @@ const cartSlice = createSlice({
     openCheckoutOrder: (state) => {
       state.order = true
     },
-    closeOrder: (state) => {
+    closeCheckoutOrder: (state) => {
       state.order = false
+    },
+    openCardOrder: (state) => {
+      state.orderCard = true
+    },
+    closeCardOrder: (state) => {
+      state.orderCard = false
     }
   }
 })
@@ -57,6 +65,8 @@ export const {
   close,
   clear,
   openCheckoutOrder,
-  closeOrder
+  closeCheckoutOrder,
+  openCardOrder,
+  closeCardOrder
 } = cartSlice.actions
 export default cartSlice.reducer

@@ -25,38 +25,48 @@ export const Cart = () => {
     dispatch(openCheckoutOrder())
   }
 
-  console.log(order)
-
   return (
     <CartTab className={isOpen ? 'is-open' : ''}>
       <Overlay onClick={closedCart} />
       <Sidebar>
         {cardapio.length > 0 ? (
           <>
-            <ul>
-              {cardapio.map((item) => (
-                <PratoItem key={item.id}>
-                  <img src={item.foto} alt={item.nome} />
-                  <div>
-                    <h3>{item.nome}</h3>
-                    <span>{parseToBrl(item.preco)}</span>
-                  </div>
-                  <button onClick={() => removeItem(item.id)} type="button" />
-                </PratoItem>
-              ))}
-            </ul>
-            <Prices>
-              Valor total:{''}
-              <span>{parseToBrl(getTotalPrice(cardapio))}</span>
-            </Prices>
-            <Button
-              type="button"
-              title="Clique aqui para continuar com a compra"
-              variant="primary"
-              onClick={openCheckout}
-            >
-              Continuar com a entrega
-            </Button>
+            {order ? (
+              ''
+            ) : (
+              <>
+                <div className="info-carrinho">
+                  <ul>
+                    {cardapio.map((item) => (
+                      <PratoItem key={item.id}>
+                        <img src={item.foto} alt={item.nome} />
+                        <div>
+                          <h3>{item.nome}</h3>
+                          <span>{parseToBrl(item.preco)}</span>
+                        </div>
+                        <button
+                          onClick={() => removeItem(item.id)}
+                          type="button"
+                        />
+                      </PratoItem>
+                    ))}
+                  </ul>
+                  <Prices>
+                    Valor total:{''}
+                    <span>{parseToBrl(getTotalPrice(cardapio))}</span>
+                  </Prices>
+                  <Button
+                    type="button"
+                    title="Clique aqui para continuar com a compra"
+                    variant="primary"
+                    onClick={openCheckout}
+                  >
+                    Continuar com a entrega
+                  </Button>
+                </div>
+              </>
+            )}
+            {order ? <Checkout /> : ''}
           </>
         ) : (
           <p className="empty-text">
@@ -65,7 +75,6 @@ export const Cart = () => {
           </p>
         )}
       </Sidebar>
-      {order ? <Checkout /> : ''}
     </CartTab>
   )
 }

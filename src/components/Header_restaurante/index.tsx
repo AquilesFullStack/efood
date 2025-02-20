@@ -3,10 +3,17 @@ import { Imagine, Titulo } from './styles'
 import headerImg from '../../assets/Vector.png'
 import logo from '../../assets/logo.png'
 import { RootReducer } from '../../store'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { open } from '../../store/reducers/carts'
 
 const HeaderRestaurant = () => {
   const { cardapio } = useSelector((state: RootReducer) => state.cart)
+
+  const dispatch = useDispatch()
+
+  const openCart = () => {
+    dispatch(open())
+  }
   return (
     <Imagine style={{ backgroundImage: `url(${headerImg})` }}>
       <div className="container">
@@ -16,7 +23,10 @@ const HeaderRestaurant = () => {
         <a href="/">
           <img src={logo} alt="Logo do site" />
         </a>
-        <Titulo>{cardapio.length} produto(s) no carrinho</Titulo>
+        <Titulo onClick={openCart}>
+          {cardapio.length}
+          produto(s) no carrinho
+        </Titulo>
       </div>
     </Imagine>
   )

@@ -40,6 +40,10 @@ export const Sidebar = styled.aside`
     color: ${cores.amarelo};
     text-align: center;
   }
+
+  .info-carrinho {
+    display: block;
+  }
 `
 
 export const Prices = styled.p`

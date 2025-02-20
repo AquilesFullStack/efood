@@ -11,21 +11,28 @@ import { usePurchaseMutation } from '../../services/api'
 import * as S from './styles'
 import { RootReducer } from '../../store'
 import { useEffect, useState } from 'react'
-import { clear, openCheckoutOrder } from '../../store/reducers/carts'
+import {
+  clear,
+  closeCheckoutOrder,
+  openCardOrder
+} from '../../store/reducers/carts'
 import Button from '../Button'
 
 const Checkout = () => {
-  const [openedCheckout, setOpenedCheckout] = useState(false)
   const [purchase, { data, isSuccess, isLoading }] = usePurchaseMutation()
-  const { cardapio, order } = useSelector((state: RootReducer) => state.cart)
+  const { cardapio, order, orderCard } = useSelector(
+    (state: RootReducer) => state.cart
+  )
+  const [showDelivery, setShowDelivery] = useState(true)
   const dispatch = useDispatch()
 
-  const keepPayment = () => {
-    setOpenedCheckout(false)
+  const BackToCart = () => {
+    dispatch(closeCheckoutOrder())
   }
 
-  const backToAddress = () => {
-    setOpenedCheckout(true)
+  const KeepPayment = () => {
+    dispatch(openCardOrder())
+    setShowDelivery(false)
   }
 
   const form = useFormik({
@@ -118,9 +125,11 @@ const Checkout = () => {
     }
   }, [isSuccess, dispatch])
 
-  if (cardapio.length === 0 && !isSuccess) {
-    return <Navigate to="/" />
-  }
+  // if (cardapio.length === 0 && !isSuccess) {
+  //   return <Navigate to="/" />
+  // }
+
+  console.log()
 
   return (
     <S.Conteudo className={order ? 'is-checkoutopen' : ''}>
@@ -157,102 +166,110 @@ const Checkout = () => {
         </Card>
       ) : (
         <form onSubmit={form.handleSubmit}>
-          {order ? (
+          {order && showDelivery && (
             <>
-              <Card title="Entregas">
-                <>
-                  <S.InputGroup>
-                    <label htmlFor="Recipient">Quem irá receber</label>
-                    <input
-                      id="Recipient"
-                      type="text"
-                      name="Recipient"
-                      value={form.values.Recipient}
-                      onChange={form.handleChange}
-                      onBlur={form.handleBlur}
-                      className={checkInputHasError('Recipient') ? 'error' : ''}
-                    />
-                  </S.InputGroup>
-                  <S.InputGroup>
-                    <label htmlFor="Address">Endereço</label>
-                    <input
-                      id="Address"
-                      type="text"
-                      name="Address"
-                      value={form.values.Address}
-                      onChange={form.handleChange}
-                      onBlur={form.handleBlur}
-                      className={checkInputHasError('Address') ? 'error' : ''}
-                    />
-                  </S.InputGroup>
-                  <S.InputGroup>
-                    <label htmlFor="City">Cidade</label>
-                    <input
-                      id="City"
-                      type="text"
-                      name="City"
-                      value={form.values.City}
-                      onChange={form.handleChange}
-                      onBlur={form.handleBlur}
-                      className={checkInputHasError('City') ? 'error' : ''}
-                    />
-                  </S.InputGroup>
-                  <S.InputGroup>
-                    <label htmlFor="CEP">CEP</label>
-                    <input
-                      id="CEP"
-                      type="text"
-                      name="CEP"
-                      value={form.values.CEP}
-                      onChange={form.handleChange}
-                      onBlur={form.handleBlur}
-                      className={checkInputHasError('CEP') ? 'error' : ''}
-                    />
-                  </S.InputGroup>
-                  <S.InputGroup>
-                    <label htmlFor="Number">Número</label>
-                    <input
-                      id="Number"
-                      type="text"
-                      name="Number"
-                      value={form.values.Number}
-                      onChange={form.handleChange}
-                      onBlur={form.handleBlur}
-                      className={checkInputHasError('Number') ? 'error' : ''}
-                    />
-                  </S.InputGroup>
-                  <S.InputGroup>
-                    <label htmlFor="Complement">Complemento (opcional) </label>
-                    <input
-                      id="Complement"
-                      type="text"
-                      name="Complement"
-                      value={form.values.Complement}
-                      onChange={form.handleChange}
-                      onBlur={form.handleBlur}
-                      className={
-                        checkInputHasError('Complement') ? 'error' : ''
-                      }
-                    />
-                  </S.InputGroup>
-                  <Button
-                    type="button"
-                    title="Clique aqui para continuar com o pagamento"
-                    variant="primary"
-                    onClick={keepPayment}
-                  >
-                    Continuar com o pagamento
-                  </Button>
-                  <Button
-                    type="button"
-                    title="Clique aqui para voltar para o carrinho"
-                  >
-                    Voltar para o carrinho
-                  </Button>
-                </>
-              </Card>
+              <div className="entregas">
+                <Card title="Entregas">
+                  <>
+                    <S.InputGroup>
+                      <label htmlFor="Recipient">Quem irá receber</label>
+                      <input
+                        id="Recipient"
+                        type="text"
+                        name="Recipient"
+                        value={form.values.Recipient}
+                        onChange={form.handleChange}
+                        onBlur={form.handleBlur}
+                        className={
+                          checkInputHasError('Recipient') ? 'error' : ''
+                        }
+                      />
+                    </S.InputGroup>
+                    <S.InputGroup>
+                      <label htmlFor="Address">Endereço</label>
+                      <input
+                        id="Address"
+                        type="text"
+                        name="Address"
+                        value={form.values.Address}
+                        onChange={form.handleChange}
+                        onBlur={form.handleBlur}
+                        className={checkInputHasError('Address') ? 'error' : ''}
+                      />
+                    </S.InputGroup>
+                    <S.InputGroup>
+                      <label htmlFor="City">Cidade</label>
+                      <input
+                        id="City"
+                        type="text"
+                        name="City"
+                        value={form.values.City}
+                        onChange={form.handleChange}
+                        onBlur={form.handleBlur}
+                        className={checkInputHasError('City') ? 'error' : ''}
+                      />
+                    </S.InputGroup>
+                    <S.InputGroup>
+                      <label htmlFor="CEP">CEP</label>
+                      <input
+                        id="CEP"
+                        type="text"
+                        name="CEP"
+                        value={form.values.CEP}
+                        onChange={form.handleChange}
+                        onBlur={form.handleBlur}
+                        className={checkInputHasError('CEP') ? 'error' : ''}
+                      />
+                    </S.InputGroup>
+                    <S.InputGroup>
+                      <label htmlFor="Number">Número</label>
+                      <input
+                        id="Number"
+                        type="text"
+                        name="Number"
+                        value={form.values.Number}
+                        onChange={form.handleChange}
+                        onBlur={form.handleBlur}
+                        className={checkInputHasError('Number') ? 'error' : ''}
+                      />
+                    </S.InputGroup>
+                    <S.InputGroup>
+                      <label htmlFor="Complement">
+                        Complemento (opcional){' '}
+                      </label>
+                      <input
+                        id="Complement"
+                        type="text"
+                        name="Complement"
+                        value={form.values.Complement}
+                        onChange={form.handleChange}
+                        onBlur={form.handleBlur}
+                        className={
+                          checkInputHasError('Complement') ? 'error' : ''
+                        }
+                      />
+                    </S.InputGroup>
+                    <Button
+                      type="button"
+                      title="Clique aqui para continuar com o pagamento"
+                      variant="primary"
+                      onClick={KeepPayment}
+                    >
+                      Continuar com o pagamento
+                    </Button>
+                    <Button
+                      type="button"
+                      title="Clique aqui para voltar para o carrinho"
+                      onClick={BackToCart}
+                    >
+                      Voltar para o carrinho
+                    </Button>
+                  </>
+                </Card>
+              </div>
             </>
-          ) : (
+          )}
+          {orderCard ? (
             <>
               <Card title="Pagamento - Valor a pagar R$12.00 ">
                 <>
@@ -335,8 +352,16 @@ const Checkout = () => {
               >
                 {isLoading ? 'Finalizando compra...' : 'Finalizar compra'}
               </Button>
-              <button>Voltar para a edição de endereço</button>
+              <Button
+                type="button"
+                title="Volte para a seção de endereço"
+                onClick={BackToCart}
+              >
+                Voltar para a edição de endereço
+              </Button>
             </>
+          ) : (
+            0
           )}
         </form>
       )}

@@ -29,4 +29,5 @@ export const Titulo = styled.h1`
   font-weight: bold;
   color: ${cores.laranja};
   margin: 5px 0;
+  cursor: pointer;
 `

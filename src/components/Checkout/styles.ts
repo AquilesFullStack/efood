@@ -35,4 +35,8 @@ export const Conteudo = styled.div`
   &.is-checkoutopen {
     display: flex;
   }
+
+  .entregas {
+    display: flex;
+  }
 `
