@@ -13,8 +13,8 @@ type PurchasePayLoad = {
     address: {
       description: string
       city: string
-      zipcode: string
-      number: string
+      zipCode: string
+      number: number
       complement: string
     }
   }
@@ -22,7 +22,7 @@ type PurchasePayLoad = {
     card: {
       name: string
       number: string
-      code: string
+      code: number
       expires: {
         month: number
         year: number
@@ -48,7 +48,7 @@ const api = createApi({
     }),
     purchase: builder.mutation<PurchaseResponse, PurchasePayLoad>({
       query: (body) => ({
-        url: 'restaurantes',
+        url: '/checkout',
         method: 'POST',
         body
       })

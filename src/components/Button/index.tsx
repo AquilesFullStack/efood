@@ -19,11 +19,11 @@ const Button = ({
   variant = 'primary',
   disabled
 }: Props) => {
-  if (type === 'button') {
+  if (type === 'button' || type === 'submit') {
     return (
       <ButtonContainer
         variant={variant}
-        type="button"
+        type={type}
         title={title}
         onClick={onClick}
         disabled={disabled}
